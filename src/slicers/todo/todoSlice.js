@@ -8,17 +8,18 @@ export const todoSlice = createSlice({
     initialState,
     reducers: {
         addTodo: (state, action) => {
-            console.log(action.payload);
             state.todos.push(action.payload);
+            // console.log(state.todos);
         },
         toggleCompleted: (state, action) => {
-            console.log(action.payload);
-            console.log(state.todos.find((todo) => todo));
             const toggleTodo = state.todos.find((todo) => todo.id === action.payload);
             toggleTodo.completed = !toggleTodo.completed; 
+        },
+        removeTodo: (state, action) => {
+            state.todos = state.todos.filter((item) => item.id !== action.payload );
         }
     }
 });
 
-export const { addTodo, toggleCompleted } = todoSlice.actions;
+export const { addTodo, toggleCompleted, removeTodo } = todoSlice.actions;
 export default todoSlice.reducer;
