@@ -1,10 +1,11 @@
 import React from 'react'
 import PostItem from './PostItem'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getPosts } from '../slicers/post/postSlice';
 
 const Posts = () => {
     const dispatch = useDispatch();
+    const posts = useSelector((state) => state.posts.posts)
     return (
         <div>
             <button
@@ -14,7 +15,11 @@ const Posts = () => {
             >
                 Get posts
             </button>
-            <PostItem />
+            {posts?.map(post => ( <PostItem key={post.title} post={post} />))}
+            
+
+           
+
         </div>
     )
 }
